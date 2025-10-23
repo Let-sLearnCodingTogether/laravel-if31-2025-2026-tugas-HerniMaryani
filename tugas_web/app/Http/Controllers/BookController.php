@@ -17,7 +17,6 @@ class BookController extends Controller
     {
         try {
             $book = Book::all();
-            return view('book.index', compact('book'));
 
             return response()->json([
                 'message' => 'List Book',
@@ -38,8 +37,6 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-
-        
         try {
             $validatedData = $request->safe()->all();
 

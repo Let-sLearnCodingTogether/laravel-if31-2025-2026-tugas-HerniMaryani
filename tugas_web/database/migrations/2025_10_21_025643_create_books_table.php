@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("author");
             $table->year("publication_year")->nullable();
             $table->string("genre", 50)->default("Umum");
-            $table->enum("read_status",["Sudah" , "Belum"])->default("Sudah");
+            $table->boolean("read_status")->default(0);
             $table->timestamps();
         });
     }
