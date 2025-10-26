@@ -25,7 +25,7 @@ class UpdateBookRequest extends FormRequest
             'title' => 'sometimes|string',
             'author' => 'sometimes|string',
             'genre' => 'sometimes|string',
-            'read_status' => 'sometimes|boolean'
+            
         ];
     }
 }

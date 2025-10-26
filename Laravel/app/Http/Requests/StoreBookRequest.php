@@ -26,7 +26,7 @@ class StoreBookRequest extends FormRequest
             'title' => 'required|string',
             'author' => 'required|string',
             'genre' => 'required|string',
-            'read_status' => 'required|boolean'
+            
         ];
     }
 }

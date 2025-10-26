@@ -16,11 +16,12 @@ class BookController extends Controller
     public function index()
     {
         try {
-            $book = Book::all();
+            $books = Book::all();
+            return view('books.index', compact('books'));
 
             return response()->json([
                 'message' => 'List Book',
-                'data' => $book
+                'data' => $books
             ], 200);
 
         } catch (\Exception $e) {
@@ -57,12 +58,12 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(Book $books)
     {
         try {
             return Response::json([
                 'message' => "Detail Book",
-                'data' => $book
+                'data' => $books
             ], 200);
         }catch (Exception $e) {
             return Response::json([
@@ -75,16 +76,16 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $books)
     {
         try {
             
             $validated = $request->safe()->all();
 
-            if($book->update($validated)){
+            if($books->update($validated)){
                 return Response::json([
                     'message' => "Book updated",
-                    'data' => $book
+                    'data' => $books
                 ], 200);
             }
 
@@ -107,10 +108,10 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book)
+    public function destroy(Book $books)
     {
         try {
-            if($book->delete()){
+            if($books->delete()){
                 return Response::json([
                     'message' => "Book deleted",
                     'data' => null
