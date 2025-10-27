@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
+import http from "@api/apiClient";
 
 export default function BookPage() { 
     const [isLoading, setIsLoading] = useState (false);
@@ -7,7 +8,7 @@ export default function BookPage() {
     const fetchBooks =useCallback(async() => {
        try {
             setIsLoading(true);
-            const response = await http.get("/book");
+            const response = await http.get("/books");
 
             setBooks(response.data.data);
         } catch (error) {
@@ -47,8 +48,8 @@ export default function BookPage() {
                                  <label for="">Status Bacaan</label>
                                  <select name="read_status" class="form-control @error('read_status') is-invalid @enderror">
                                  <option value="read_status">-- Pilih Hasil --</option>
-                                 <option value="Belum" selected={'Sudah' === book.read_status}>Sudah dibaca</option>
-                                 <option value="Belum" selected={'Belum' === book.read_status}>Belum dibaca</option>
+                                 <option value="sudah" selected={'sudah' === book.read_status}>Sudah dibaca</option>
+                                 <option value="belum" selected={'belum' === book.read_status}>Belum dibaca</option>
                                 </select>
                             </div>
                         </li>

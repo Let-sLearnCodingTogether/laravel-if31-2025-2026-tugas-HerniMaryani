@@ -38,10 +38,11 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         try {
-            $books= Book::all();
+            $validatedData = $request->validated();
+            $book = Book::create($validatedData);
             return response()->json([
                 'message' => 'Book berhasil dibuat',
-                'data' => $books
+                'data' => $book
             ], 201);
             
         } catch (\Exception $e) {
