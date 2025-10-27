@@ -17,8 +17,7 @@ class BookController extends Controller
     {
         try {
             $books = Book::all();
-            return view('books.index', compact('books'));
-
+            
             return response()->json([
                 'message' => 'List Book',
                 'data' => $books
@@ -39,12 +38,10 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         try {
-            $validatedData = $request->safe()->all();
-
-            $book = Book::create($validatedData);
+            $books= Book::all();
             return response()->json([
                 'message' => 'Book berhasil dibuat',
-                'data' => $book
+                'data' => $books
             ], 201);
             
         } catch (\Exception $e) {
@@ -58,12 +55,12 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $books)
+    public function show(Book $book)
     {
         try {
             return Response::json([
                 'message' => "Detail Book",
-                'data' => $books
+                'data' => $book
             ], 200);
         }catch (Exception $e) {
             return Response::json([
@@ -76,16 +73,16 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $books)
+    public function update(UpdateBookRequest $request, Book $book)
     {
         try {
             
             $validated = $request->safe()->all();
 
-            if($books->update($validated)){
+            if($book->update($validated)){
                 return Response::json([
                     'message' => "Book updated",
-                    'data' => $books
+                    'data' => $book
                 ], 200);
             }
 
@@ -108,10 +105,10 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $books)
+    public function destroy(Book $book)
     {
         try {
-            if($books->delete()){
+            if($book->delete()){
                 return Response::json([
                     'message' => "Book deleted",
                     'data' => null
